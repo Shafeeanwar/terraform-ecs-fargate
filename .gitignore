@@ -4,4 +4,7 @@
 .terraform.tfstate.lock.info
 
 # Module directory
-.terraform/
+.terraform/*
+
+#Secret files
+.aws/

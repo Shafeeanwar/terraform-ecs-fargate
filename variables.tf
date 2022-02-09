@@ -2,7 +2,7 @@
 
 variable "aws_region" {
   description = "The AWS region things are created in"
-  default     = "us-west-2"
+  default     = "ap-south-1"
 }
 
 variable "ecs_task_execution_role_name" {
@@ -17,17 +17,22 @@ variable "az_count" {
 
 variable "app_image" {
   description = "Docker image to run in the ECS cluster"
-  default     = "nginx:latest"
+  default     = "126295952797.dkr.ecr.ap-south-1.amazonaws.com/3d-services-ui:latest"
+}
+
+variable "ui_container_port" {
+  description = "Port exposed by the UI docker image to redirect traffic to"
+  default     = 3000
 }
 
 variable "app_port" {
-  description = "Port exposed by the docker image to redirect traffic to"
+  description = "Port exposed by nginx to redirect traffic to"
   default     = 80
 }
 
 variable "app_count" {
   description = "Number of docker containers to run"
-  default     = 3
+  default     = 1
 }
 
 variable "health_check_path" {

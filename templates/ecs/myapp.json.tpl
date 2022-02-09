@@ -13,10 +13,11 @@
           "awslogs-stream-prefix": "ecs"
         }
     },
+    "pseudoTerminal": true,
     "portMappings": [
       {
-        "containerPort": ${app_port},
-        "hostPort": ${app_port}
+        "containerPort": ${ui_container_port},
+        "hostPort": ${ui_container_port}
       }
     ]
   }

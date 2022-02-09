@@ -1,5 +1,6 @@
 # ecs.tf
 
+# make pseudoTerminal:true so react app can run in -itd mode
 resource "aws_ecs_cluster" "main" {
   name = "myapp-cluster"
 }
@@ -9,7 +10,7 @@ data "template_file" "myapp" {
 
   vars = {
     app_image      = var.app_image
-    app_port       = var.app_port
+    ui_container_port       = var.ui_container_port
     fargate_cpu    = var.fargate_cpu
     fargate_memory = var.fargate_memory
     aws_region     = var.aws_region
@@ -42,7 +43,7 @@ resource "aws_ecs_service" "main" {
   load_balancer {
     target_group_arn = aws_alb_target_group.app.id
     container_name   = "myapp"
-    container_port   = var.app_port
+    container_port   = var.ui_container_port
   }
 
   depends_on = [aws_alb_listener.front_end, aws_iam_role_policy_attachment.ecs_task_execution_role]
